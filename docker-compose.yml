@@ -2,10 +2,10 @@ version: "3.4"
 
 services:
   web:
-  image: nginx
-  deploy:
-        mode: replicated
-        replicas: 1
-        placement:
-          constraints:
-            - node.role == manager
+    image: nginx
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
