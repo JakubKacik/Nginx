@@ -1,12 +1,10 @@
 version: "3.4"
 
-nginx:
- image: nginx
- ports:
- - "8080:80"
- eploy:
-  mode: replicated
-  replicas: 1
-  placement:
-    constraints:
-      - node.role == manager
+hello:
+ image: hello-world
+ deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
