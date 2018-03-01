@@ -1,6 +1,12 @@
-version: "3"
+version: "3.4"
 
 nginx:
- image: nginx:latest
+ image: nginx
  ports:
  - "8080:80"
+ eploy:
+  mode: replicated
+  replicas: 1
+  placement:
+    constraints:
+      - node.role == manager
