@@ -13,11 +13,6 @@ services:
 
         - ./Logs/nginx-error.log:/var/log/nginx/error.log
         - ./Logs/nginx-access.log:/var/log/nginx/access.log
-    deploy:
-      mode: replicated
-        replicas: 1
-    depends_on:
-      - mysql
   php:
     image: php:fpm
       ports:
@@ -30,9 +25,6 @@ services:
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - "3306:3306"
-    deploy:
-      mode: replicated
-        replicas: 1
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
