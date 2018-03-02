@@ -10,4 +10,4 @@ web:
 php:
   image: php:7-fpm
   volumes:
-      - ./code:/code
+      - ./public:/code
