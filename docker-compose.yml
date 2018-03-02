@@ -3,6 +3,8 @@ version: "3.4"
 services:
   nginx:
     image: nginx
+    links:
+      - php
     ports:
         - "80:80"
     volumes:
@@ -13,9 +15,6 @@ services:
         - ./Logs/nginx-access.log:/var/log/nginx/access.log
     networks: 
       - nginx-net
-    depends_on:
-      - php
-      - mysql
   php:
     image: php:fpm
     ports:
@@ -24,28 +23,5 @@ services:
         - ./Public:/usr/share/nginx/html
     networks: 
       - nginx-net
-  mysql:
-    image: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-    ports:
-      - "3306:3306" 
-    networks: 
-      - nginx-net
-    
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    depends_on:
-      - mysql
-    ports:
-      - 8183:80
-    environment:
-      PMA_USER: root
-      PMA_PASSWORD: admin
-      PMA_ARBITRARY: 1
-    networks: 
-      - nginx-net
-
 networks:
   nginx-net:
