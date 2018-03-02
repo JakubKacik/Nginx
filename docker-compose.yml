@@ -4,7 +4,14 @@ services:
   nginx:
     image: nginx
     ports:
-        - "80:80"
+      - "80:80"
+    depends_on:
+      - php
+  php:
+    image: php
+    ports:
+      - "9000:9000"
+  
   mysql:
     image: mariadb
     environment:
