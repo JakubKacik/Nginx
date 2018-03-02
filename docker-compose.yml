@@ -17,12 +17,12 @@ version: "3.4"
     php:
       image: wiput1999/php
       volumes:
-        - ./public:/web
+        - ./Public:/web
     nginx:
       image: nginx:latest
       ports:
         - "80:80"
         - "443:443"
       volumes:
-        - ./public:/code:ro
+        - ./Public:/web:ro
         - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
