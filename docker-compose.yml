@@ -2,26 +2,37 @@ version: "3.4"
 
 services:
   nginx:
-    image: nginx
+    image: tutum/nginx
     ports:
         - "80:80"
+    links:
+        - phpfpm
     volumes:
-        - ./Config/default:/etc/nginx/sites-available/default
-        - ./Config/default:/etc/nginx/sites-enabled/default
+        - ./nginx/default:/etc/nginx/sites-available/default
+        - ./nginx/default:/etc/nginx/sites-enabled/default
 
-        - ./Logs/nginx-error.log:/var/log/nginx/error.log
-        - ./Logs/nginx-access.log:/var/log/nginx/access.log
-    networks: 
-      - nginx-net
-    depends_on:
-      - php
-  php:
-    image: php
+        - ./logs/nginx-error.log:/var/log/nginx/error.log
+        - ./logs/nginx-access.log:/var/log/nginx/access.log
+  phpfpm:
+      image: php:fpm
+      ports:
+          - "9000:9000"
+      volumes:
+          - ./public:/usr/share/nginx/html
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
     ports:
-        - "9000:9000"
-    volumes:
-        - ./Public:/usr/share/nginx/html
-    networks: 
-      - nginx-net
-networks:
-  nginx-net:
+      - "3306:3306" 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - mysql
+    ports:
+      - 8183:80
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: admin
+      PMA_ARBITRARY: 1
