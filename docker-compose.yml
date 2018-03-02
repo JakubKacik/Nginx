@@ -1,7 +1,7 @@
 web:
   image: nginx:latest
   ports:
-      - "8001:80"
+      - "80:80"
   volumes:
       - ./public:/code
       - ./nginx/default.conf:/etc/nginx/conf.d/site.conf
@@ -9,3 +9,5 @@ web:
       - php
 php:
   image: php:7-fpm
+  volumes:
+      - ./public:/code
