@@ -12,7 +12,7 @@ services:
     #    - ./Config/nginx:/etc/nginx/sites-enabled/default
 
     #    - ./Logs/nginx-error.log:/var/log/nginx/error.log
-        - ./Logs/nginx-access.log:/var/log/nginx/access.log
+    #   - ./Logs/nginx-access.log:/var/log/nginx/access.log
   php:
     image: php:fpm
       ports:
