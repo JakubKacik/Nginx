@@ -2,23 +2,21 @@ version: "3.4"
 
 services:
   nginx:
-    image: tutum/nginx
+    image: nginx
     ports:
         - "80:80"
-    links:
-        - phpfpm
+    depends_on:
+        - php
     volumes:
         - ./nginx/default.conf:/etc/nginx/nginx.conf
-        - ./nginx/default.conf:/etc/nginx/nginx.conf
-
         - ./logs/nginx-error.log:/var/log/nginx/error.log
         - ./logs/nginx-access.log:/var/log/nginx/access.log
-  phpfpm:
-      image: php:fpm
-      ports:
-          - "9000:9000"
-      volumes:
-          - ./public:/usr/share/nginx/html
+  php:
+    image: php
+    ports:
+        - "9000:9000"
+    volumes:
+        - ./public:/usr/share/nginx/html
   mysql:
     image: mariadb
     environment:
@@ -27,8 +25,7 @@ services:
       - "3306:3306" 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    restart: always
-    links:
+    depends_on:
       - mysql
     ports:
       - 8183:80
