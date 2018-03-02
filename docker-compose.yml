@@ -48,4 +48,4 @@ services:
       - nginx-net
 
 networks:
-  - nginx-net
+  nginx-net:
