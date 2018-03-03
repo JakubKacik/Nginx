@@ -16,5 +16,30 @@ services:
       placement:
         constraints:
           - node.role == manager
+    depends_on:
+      - mysql
+      - phpmyadmin
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8183:80
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: admin
+      PMA_ARBITRARY: 1
+
 networks: 
   web-net:
