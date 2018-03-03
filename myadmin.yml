@@ -5,12 +5,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
     ports:
-      # just if you also want to access it directly from you host
-      # node neede for phpmyadmin
       - "3306:3306"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     depends_on:
       - db
     ports:
-      - "8081:8080"
+      - "8081:80"
