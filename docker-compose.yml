@@ -38,5 +38,9 @@ services:
       PMA_ARBITRARY: 1
     networks: 
       - web-net
+  redis:
+    image: redis
+    networks: 
+      - web-net
 networks: 
   web-net:
