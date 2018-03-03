@@ -1,19 +1,20 @@
-version: "3.4"
-
 services:
   web:
     image: nginx
     ports:
-        - "80:80"
+      - "80:80"
+    volumes:
+      - ./Public:/public_html
+      - ./conf.d:/etc/nginx/conf.d
     networks:
-      - nginx-net
-    depends_on:
-      - php
+      - nginxphp
   php:
     image: php
-    ports:
-      - "3000:3000"
-    networks: 
-      - nginx-net
+    volumes:
+      - ./Public:/public_html
+    expose:
+      - 9000
+    networks:
+      - nginxphp
 networks:
-  nginx-net:
+    nginxphp:
