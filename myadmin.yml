@@ -3,7 +3,7 @@ services:
   db:
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD:pass
+      MYSQL_ROOT_PASSWORD: admin
     ports:
       # just if you also want to access it directly from you host
       # node neede for phpmyadmin
