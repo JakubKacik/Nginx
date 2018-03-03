@@ -1,3 +1,5 @@
+version: "3.4"
+
 services:
   web:
     image: nginx
@@ -17,4 +19,4 @@ services:
     networks:
       - nginxphp
 networks:
-    nginxphp:
+  nginxphp:
