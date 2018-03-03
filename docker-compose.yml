@@ -5,8 +5,6 @@ services:
     image: nginx
     ports:
         - "80:80"
-    volumes:
-      - ./Public:/code
     networks:
       - nginx-net
 networks:
