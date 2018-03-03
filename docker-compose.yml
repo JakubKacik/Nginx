@@ -7,7 +7,7 @@ services:
         - "80:80"
     volumes:
       - ./Public:/code
-      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
+      - ./default.conf:/etc/nginx/nginx.conf
     networks:
       - nginx-net
 networks:
