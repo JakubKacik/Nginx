@@ -11,11 +11,7 @@ services:
     networks: 
       - web-net
     deploy:
-      mode: replicated
-      replicas: 3
-      placement:
-        constraints:
-          - node.role == manager
+      mode: global
     depends_on:
       - db 
   db:
