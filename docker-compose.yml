@@ -2,12 +2,9 @@ version: "3.4"
 
 services:
   web:
-    image: richarvey/nginx-php-fpm
+    image: kac0051/nginxphp
     ports:
       - "5000:80"
-    volumes:
-      - ./Public:/var/www/html
-      - ./conf.d:/conf/nginx/
     networks: 
       - web-net
     deploy:
@@ -38,5 +35,7 @@ services:
     image: redis
     networks: 
       - web-net
+    depends_on:
+      - web
 networks: 
   web-net:
